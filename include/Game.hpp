@@ -1,18 +1,6 @@
 #pragma once
 
-//Standard libs
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-
-//SFML
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-
-//Headers
+#include "State.hpp"
 
 class Game
 {
@@ -22,6 +10,9 @@ class Game
         sf::Event sfEvent;
 
 
+        sf::Clock dtClock;
+        float dt;
+
         //Initialization
         void initWindow();
     public:
@@ -30,6 +21,7 @@ class Game
         virtual ~Game();
 
         //Functions
+        void updateDt();
         void updateSFMLEvents();
         void update();
         void render();
