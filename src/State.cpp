@@ -1,6 +1,8 @@
 #include "State.hpp"
 
-State::State()
+//Constructors & Destructors
+State::State(sf::RenderWindow* window) 
+    : window(window)
 {
 
 }

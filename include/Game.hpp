@@ -1,6 +1,6 @@
 #pragma once
 
-#include "State.hpp"
+#include "GameState.hpp"
 
 class Game
 {
@@ -9,19 +9,24 @@ class Game
         sf::RenderWindow* window;
         sf::Event sfEvent;
 
-        //-> window options
+        //-> Window options
         std::string windowTitle;
-        sf::VideoMode windowMode; //window options
+        sf::VideoMode windowMode;
         unsigned int frameLimit;
         bool vSync;
 
-        //-> time options
+        //-> Time options
         sf::Clock dtClock;
         float dt;
+
+        //-> Game states
+        std::stack<State*> states;
 
         //Initialization
         void initWindow();
         void loadWindowIni(const std::string& filepath);
+        void initStates();
+
     public:
         //Constructors & Destructors
         Game();

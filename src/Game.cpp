@@ -11,15 +11,43 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vSync);
 }
 
+void Game::loadWindowIni(const std::string& filepath)
+{
+    std::ifstream stream(filepath);
+    
+    if(stream.is_open())
+    {
+        std::getline(stream, windowTitle);
+        stream >> windowMode.width >> windowMode.height;
+        stream >> frameLimit;
+        stream >> vSync;
+    } else {std::cout << "window.ini not found!";}
+
+    stream.close();
+}
+
+void Game::initStates()
+{
+    this->states.push(new GameState(this->window));
+}
+
 //Constructors & Destructors
 Game::Game()
 {
     this->initWindow();
+    this->initStates();
 }
 
 Game::~Game()
 {
     delete this->window;
+
+    while(!this->states.empty())
+    {
+        delete this->states.top();
+        this->states.pop();
+    }
+        
 }
 
 
@@ -44,13 +72,17 @@ void Game::updateSFMLEvents()
 void Game::update()
 {
     this->updateSFMLEvents();
+
+    if(!this->states.empty())
+        this->states.top()->update(this->dt);
 }
 
 void Game::render()
 {
     this->window->clear();
 
-    //Render here
+    if(!this->states.empty())
+        this->states.top()->render(this->window);
 
     this->window->display();
 }
@@ -63,19 +95,4 @@ void Game::run()
         this->update();
         this->render();
     }
-}
-
-void Game::loadWindowIni(const std::string& filepath)
-{
-    std::ifstream stream(filepath);
-    
-    if(stream.is_open())
-    {
-        std::getline(stream, windowTitle);
-        stream >> windowMode.width >> windowMode.height;
-        stream >> frameLimit;
-        stream >> vSync;
-    } else {std::cout << "window.ini not found!";}
-
-    stream.close();
 }
