@@ -39,3 +39,10 @@ std::map<std::string, int>& State::getKeybinds()
 {
     return keybinds;
 }
+
+void State::updateMousePositions()
+{
+    this->mousePosScreen = sf::Mouse::getPosition();
+    this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+    this->mousePosView   = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+}

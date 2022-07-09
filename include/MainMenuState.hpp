@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameState.hpp"
+#include "Button.hpp"
 
 class MainMenuState : public State
 {
@@ -8,8 +9,10 @@ class MainMenuState : public State
 
         //Variables
         sf::RectangleShape background;
+        sf::Font font;
 
         //Functions
+        void initFonts();
         void initKeybinds() override;
         void loadKeybindsIni(const std::string& filepath);
 

@@ -1,6 +1,14 @@
 #include "MainMenuState.hpp"
 
 //Private Functions
+void MainMenuState::initFonts()
+{
+    if(this->font.loadFromFile("fonts/Cascadia.ttf"))
+    {
+        throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
+    }
+}
+
 void MainMenuState::initKeybinds()
 {
     this->loadKeybindsIni("../config/gamestate_keybinds.ini");
@@ -27,6 +35,7 @@ void MainMenuState::loadKeybindsIni(const std::string& filepath)
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys) 
     :   State(window, supportedKeys)
 {
+    this->initFonts();
     this->initKeybinds();
     this->background.setSize(sf::Vector2f(this->getWindow()->getSize().x, this->getWindow()->getSize().y));
     this->background.setFillColor(sf::Color::Blue);
@@ -50,6 +59,7 @@ void MainMenuState::updateInput(const float& dt)
 
 void MainMenuState::update(const float& dt)
 {
+    this->updateMousePositions();
     this->updateInput(dt);
 }
 

@@ -13,6 +13,11 @@ class State
 
         //Resources
         std::vector<sf::Texture> textures;
+    
+    protected:
+        sf::Vector2i mousePosScreen;
+        sf::Vector2i mousePosWindow;
+        sf::Vector2f mousePosView;
 
     public:
         //Constructors & Destructors
@@ -28,8 +33,12 @@ class State
         //Functions
         virtual void checkForQuit();
         virtual void endState() = 0;
+
+        //-> Update
+        virtual void updateMousePositions();
         virtual void updateInput(const float& dt) = 0;
         virtual void update(const float& dt) = 0;
+
         virtual void render(sf::RenderTarget* target = nullptr) = 0;
         virtual void initKeybinds() = 0;
 };
