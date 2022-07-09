@@ -22,9 +22,13 @@ class Game
         //-> Game states
         std::stack<State*> states;
 
+        //-> Core
+        std::map<std::string, int> supportedKeys;
+
         //Initialization
         void initWindow();
         void loadWindowIni(const std::string& filepath);
+        void initKeys();
         void initStates();
 
     public:
