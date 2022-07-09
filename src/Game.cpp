@@ -3,8 +3,12 @@
 //Initialization
 void Game::initWindow()
 {
-    //Create SFML window using options from windows.ini file
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "RPG");
+    //Create SFML window using options from window.ini file
+    this->loadWindowIni("../config/window.ini");
+
+    this->window = new sf::RenderWindow(windowMode, windowTitle);
+    this->window->setFramerateLimit(frameLimit);
+    this->window->setVerticalSyncEnabled(vSync);
 }
 
 //Constructors & Destructors
@@ -59,4 +63,19 @@ void Game::run()
         this->update();
         this->render();
     }
+}
+
+void Game::loadWindowIni(const std::string& filepath)
+{
+    std::ifstream stream(filepath);
+    
+    if(stream.is_open())
+    {
+        std::getline(stream, windowTitle);
+        stream >> windowMode.width >> windowMode.height;
+        stream >> frameLimit;
+        stream >> vSync;
+    } else {std::cout << "window.ini not found!";}
+
+    stream.close();
 }
