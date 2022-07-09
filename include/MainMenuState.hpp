@@ -1,11 +1,13 @@
 #pragma once
 
-#include "State.hpp"
+#include "GameState.hpp"
 
-class GameState : public State
+class MainMenuState : public State
 {
     private:
-        Entity player;
+
+        //Variables
+        sf::RectangleShape background;
 
         //Functions
         void initKeybinds() override;
@@ -13,8 +15,8 @@ class GameState : public State
 
     public:
         //Constructors & Destructors
-        GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
-        virtual ~GameState();
+        MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
+        virtual ~MainMenuState();
 
         //Functions
         void endState() override;

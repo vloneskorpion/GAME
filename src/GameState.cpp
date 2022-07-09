@@ -38,7 +38,7 @@ GameState::~GameState()
 //Functions
 void GameState::endState()
 {
-
+    std::cout << "ENDING GAMESTATE!" << '\n';
 }
 
 void GameState::updateInput(const float& dt)

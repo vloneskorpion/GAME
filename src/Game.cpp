@@ -51,6 +51,7 @@ void Game::loadKeysIni(const std::string& filepath)
 void Game::initStates()
 {
     this->states.push(new GameState(this->window, &this->supportedKeys));
+    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
 //Constructors & Destructors
