@@ -5,6 +5,8 @@
 class GameState : public State
 {
     private:
+        Entity player;
+
     public:
         //Constructors & Destructors
         GameState(sf::RenderWindow* window);

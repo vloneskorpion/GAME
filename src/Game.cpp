@@ -21,7 +21,7 @@ void Game::loadWindowIni(const std::string& filepath)
         stream >> windowMode.width >> windowMode.height;
         stream >> frameLimit;
         stream >> vSync;
-    } else {std::cout << "window.ini not found!";}
+    } else {std::cout << "ERROR: window.ini not found!";}
 
     stream.close();
 }
@@ -63,7 +63,7 @@ void Game::updateDt()
     //Updates the dt with the time it takes to update and render one frame
     this->dt = this->dtClock.restart().asSeconds();
     // std::cout << "Time elapsed: " << dt << '\n';
-    system("clear");
+    // system("clear");
 }
 
 void Game::updateSFMLEvents()
