@@ -29,6 +29,7 @@ class Game
         void initWindow();
         void loadWindowIni(const std::string& filepath);
         void initKeys();
+        void loadKeysIni(const std::string& filepath);
         void initStates();
 
     public:

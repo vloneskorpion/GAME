@@ -21,7 +21,7 @@ sf::RenderWindow* State::getWindow() const
 
 void State::checkForQuit()
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    if(sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(this->getKeybinds()["CLOSE"]))) 
         this->quit = true;
 }
 

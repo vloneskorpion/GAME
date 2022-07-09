@@ -28,11 +28,24 @@ void Game::loadWindowIni(const std::string& filepath)
 
 void Game::initKeys()
 {
-    this->supportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
-    this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
-    this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
-    this->supportedKeys.emplace("W", sf::Keyboard::Key::W);
-    this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
+    this->loadKeysIni("../config/supported_keys.ini");
+}
+
+void Game::loadKeysIni(const std::string& filepath)
+{
+    std::ifstream stream(filepath);
+    std::string key; 
+    int value;
+    
+    if(stream.is_open())
+    {
+        while(stream >> key >> value)
+        {
+            this->supportedKeys.insert(std::make_pair(key,value));
+        }
+    } else {std::cout << "ERROR: window.ini not found!";}
+
+    stream.close();
 }
 
 void Game::initStates()

@@ -9,6 +9,7 @@ class GameState : public State
 
         //Functions
         void initKeybinds() override;
+        void loadKeybindsIni(const std::string& filepath);
 
     public:
         //Constructors & Destructors

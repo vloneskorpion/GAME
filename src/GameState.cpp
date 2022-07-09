@@ -3,10 +3,24 @@
 //Private Functions
 void GameState::initKeybinds()
 {
-    this->getKeybinds().emplace("MOVE_LEFT",    this->getSupportedKeys()->at("A"));
-    this->getKeybinds().emplace("MOVE_RIGHT",   this->getSupportedKeys()->at("D"));
-    this->getKeybinds().emplace("MOVE_UP",      this->getSupportedKeys()->at("W"));
-    this->getKeybinds().emplace("MOVE_DOWN",    this->getSupportedKeys()->at("S"));
+    this->loadKeybindsIni("../config/gamestate_keybinds.ini");
+}
+
+void GameState::loadKeybindsIni(const std::string& filepath)
+{
+    std::ifstream stream(filepath);
+    std::string left_key; 
+    std::string right_key;
+
+    if(stream.is_open())
+    {
+        while(stream >> left_key >> right_key)
+        {
+            this->getKeybinds()[left_key] = this->getSupportedKeys()->at(right_key);
+        }
+    } else {std::cout << "ERROR: window.ini not found!";}
+
+    stream.close();
 }
 
 //Constructors & Destructors
