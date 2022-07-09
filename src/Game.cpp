@@ -52,11 +52,17 @@ Game::~Game()
 
 
 //Functions
+
+void Game::endAppliaction()
+{
+    std::cout << "ENDING GAME!" << '\n';
+}
+
 void Game::updateDt()
 {
     //Updates the dt with the time it takes to update and render one frame
     this->dt = this->dtClock.restart().asSeconds();
-    std::cout << "Time elapsed: " << dt << '\n';
+    // std::cout << "Time elapsed: " << dt << '\n';
     system("clear");
 }
 
@@ -74,7 +80,22 @@ void Game::update()
     this->updateSFMLEvents();
 
     if(!this->states.empty())
+    {
         this->states.top()->update(this->dt);
+
+        if(this->states.top()->getQuit()) 
+        {
+            this->states.top()->endState();
+            delete this->states.top();
+            this->states.pop();
+        }
+    }
+    //APPLICATION END
+    else
+    {
+        this->endAppliaction();
+        this->window->close();
+    }
 }
 
 void Game::render()

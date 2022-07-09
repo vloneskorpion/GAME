@@ -33,9 +33,18 @@ class Game
         virtual ~Game();
 
         //Functions
+
+        //-> Regular
+        void endAppliaction();
+
+        //-> Update
         void updateDt();
         void updateSFMLEvents();
         void update();
+        
+        //-> Render
         void render();
+
+        //-> Core
         void run();
 };
