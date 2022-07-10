@@ -31,16 +31,24 @@ void MainMenuState::loadKeybindsIni(const std::string& filepath)
     stream.close();
 }
 
+void MainMenuState::initButtons()
+{
+    this->buttons["GAME_STATE"] = new Button(100, 100, 150, 50,
+                                &this->font, "BUTTON",
+                                sf::Color(70,70,70, 200), sf::Color(150,150,150, 255), sf::Color(20,20,20, 200));
+
+    this->buttons["EXIT"] = new Button(100, 300, 150, 50,
+                                &this->font, "ZRYDEK",
+                                sf::Color(70,70,70, 200), sf::Color(150,150,150, 255), sf::Color(20,20,20, 200));
+}
+
 //Constructors & Destructors
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys) 
     :   State(window, supportedKeys)
 {
     this->initFonts();
     this->initKeybinds();
-
-    this->gamestate_btn = new Button(100, 100, 150, 50,
-                                    &this->font, "BUTTON",
-                                    sf::Color(70,70,70, 200), sf::Color(150,150,150, 255), sf::Color(20,20,20, 200));
+    this->initButtons();
 
     this->background.setSize(sf::Vector2f(this->getWindow()->getSize().x, this->getWindow()->getSize().y));
     this->background.setFillColor(sf::Color::Blue);
@@ -48,7 +56,10 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int
 
 MainMenuState::~MainMenuState()
 {
-    delete this->gamestate_btn;
+    for(auto it = buttons.begin(); it != buttons.end(); ++it)
+    {
+        delete it->second;
+    }
 }
 
 //Functions
@@ -62,12 +73,36 @@ void MainMenuState::updateInput(const float& dt)
     this->checkForQuit();
 }
 
+void MainMenuState::updateButtons()
+{
+    //Updated all buttons in the state and handles their functionality
+    for(const auto& kv : buttons)
+    {
+        kv.second->update(mousePosView);
+    }
+
+    //Quit the game
+    if(this->buttons["EXIT"]->isPressed())
+    {
+        this->quitState();
+    }
+}
+
+void MainMenuState::renderButtons(sf::RenderTarget* target)
+{
+    for(const auto& kv : buttons)
+    {
+        kv.second->redner(target);
+    }
+}
+
 void MainMenuState::update(const float& dt)
 {
     this->updateMousePositions();
     this->updateInput(dt);
 
-    this->gamestate_btn->update(this->mousePosView);
+    this->updateButtons();
+
 }
 
 void MainMenuState::render(sf::RenderTarget* target)
@@ -75,5 +110,6 @@ void MainMenuState::render(sf::RenderTarget* target)
     if(!target)
         target = this->getWindow();
     target->draw(this->background);
-    this->gamestate_btn->redner(target);
+
+    this->renderButtons(target);
 }

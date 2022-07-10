@@ -23,8 +23,6 @@ class Button
 {
     private:
         short unsigned buttonState;
-        bool pressed;
-        bool hover;
 
         sf::RectangleShape shape;
         sf::Font* font;

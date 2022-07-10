@@ -30,6 +30,11 @@ const bool& State::getQuit() const
     return quit;
 }
 
+void State::quitState()
+{
+    quit = true;
+}
+
 std::map<std::string, int>* State::getSupportedKeys() const
 {
     return supportedKeys;

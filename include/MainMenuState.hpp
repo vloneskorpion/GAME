@@ -11,12 +11,13 @@ class MainMenuState : public State
         sf::RectangleShape background;
         sf::Font font;
 
-        Button* gamestate_btn;
+        std::map<std::string, Button*> buttons;
 
         //Functions
         void initFonts();
         void initKeybinds() override;
         void loadKeybindsIni(const std::string& filepath);
+        void initButtons();
 
     public:
         //Constructors & Destructors
@@ -26,6 +27,8 @@ class MainMenuState : public State
         //Functions
         void endState() override;
         void updateInput(const float& dt) override;
+        void updateButtons();
+        void renderButtons(sf::RenderTarget* target = nullptr);
         void update (const float& dt) override;
         void render (sf::RenderTarget* target = nullptr) override;
 };

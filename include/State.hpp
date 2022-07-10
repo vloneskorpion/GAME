@@ -27,6 +27,8 @@ class State
         //Getters & Setters
         sf::RenderWindow* getWindow() const;
         const bool& getQuit() const;
+        //TODO resolve quit function later
+        void quitState();
         std::map<std::string, int>*  getSupportedKeys() const;
         std::map<std::string, int>&  getKeybinds();
 
