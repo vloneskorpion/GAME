@@ -11,6 +11,8 @@ class MainMenuState : public State
         sf::RectangleShape background;
         sf::Font font;
 
+        Button* gamestate_btn;
+
         //Functions
         void initFonts();
         void initKeybinds() override;
