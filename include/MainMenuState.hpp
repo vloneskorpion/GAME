@@ -21,7 +21,7 @@ class MainMenuState : public State
 
     public:
         //Constructors & Destructors
-        MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
+        MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>& states);
         virtual ~MainMenuState();
 
         //Functions

@@ -11,7 +11,7 @@ void MainMenuState::initFonts()
 
 void MainMenuState::initKeybinds()
 {
-    this->loadKeybindsIni("../config/gamestate_keybinds.ini");
+    this->loadKeybindsIni("../config/mainmenustate_keybinds.ini");
 }
 
 void MainMenuState::loadKeybindsIni(const std::string& filepath)
@@ -34,17 +34,17 @@ void MainMenuState::loadKeybindsIni(const std::string& filepath)
 void MainMenuState::initButtons()
 {
     this->buttons["GAME_STATE"] = new Button(100, 100, 150, 50,
-                                &this->font, "BUTTON",
+                                &this->font, "NEW GAME",
                                 sf::Color(70,70,70, 200), sf::Color(150,150,150, 255), sf::Color(20,20,20, 200));
 
     this->buttons["EXIT"] = new Button(100, 300, 150, 50,
-                                &this->font, "ZRYDEK",
+                                &this->font, "EXIT",
                                 sf::Color(70,70,70, 200), sf::Color(150,150,150, 255), sf::Color(20,20,20, 200));
 }
 
 //Constructors & Destructors
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys) 
-    :   State(window, supportedKeys)
+MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>& states) 
+    :   State(window, supportedKeys, states)
 {
     this->initFonts();
     this->initKeybinds();
@@ -79,6 +79,11 @@ void MainMenuState::updateButtons()
     for(const auto& kv : buttons)
     {
         kv.second->update(mousePosView);
+    }
+
+    if(this->buttons["GAME_STATE"]->isPressed())
+    {
+        this->states.push(new GameState(this->getWindow(), this->getSupportedKeys(), this->states));
     }
 
     //Quit the game

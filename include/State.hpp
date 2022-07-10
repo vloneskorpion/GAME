@@ -19,9 +19,11 @@ class State
         sf::Vector2i mousePosWindow;
         sf::Vector2f mousePosView;
 
+        std::stack<State*>& states;
+
     public:
         //Constructors & Destructors
-        State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
+        State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>& states);
         virtual ~State();
 
         //Getters & Setters
