@@ -8,12 +8,17 @@ class Game
         //VARIABLES
         sf::RenderWindow* window;
         sf::Event sfEvent;
+        std::vector<sf::VideoMode> videoModes; 
 
         //-> Window options
-        std::string windowTitle;
-        sf::VideoMode windowMode;
-        unsigned int frameLimit;
-        bool vSync;
+        std::string windowTitle{"None"};
+        sf::VideoMode windowMode{sf::VideoMode::getDesktopMode()};
+        sf::ContextSettings windowSettings;
+        bool fullscreen{false};
+        unsigned int frameLimit{120};
+        bool vSync{false};
+        unsigned antialiasingLevel{0};
+
 
         //-> Time options
         sf::Clock dtClock;

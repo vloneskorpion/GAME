@@ -5,10 +5,15 @@ void Game::initWindow()
 {
     //Create SFML window using options from window.ini file
     this->loadWindowIni("../config/window.ini");
+    this->videoModes = sf::VideoMode::getFullscreenModes();
 
-    this->window = new sf::RenderWindow(windowMode, windowTitle);
-    this->window->setFramerateLimit(frameLimit);
-    this->window->setVerticalSyncEnabled(vSync);
+    this->windowSettings.antialiasingLevel = this->antialiasingLevel;
+    if(this->fullscreen)
+        this->window = new sf::RenderWindow(this->windowMode, this->windowTitle, sf::Style::Fullscreen, this->windowSettings);
+    else
+        this->window = new sf::RenderWindow(this->windowMode, this->windowTitle, sf::Style::Titlebar | sf::Style::Close, this->windowSettings);
+    this->window->setFramerateLimit(this->frameLimit);
+    this->window->setVerticalSyncEnabled(this->vSync);
 }
 
 void Game::loadWindowIni(const std::string& filepath)
@@ -18,9 +23,11 @@ void Game::loadWindowIni(const std::string& filepath)
     if(stream.is_open())
     {
         std::getline(stream, windowTitle);
-        stream >> windowMode.width >> windowMode.height;
-        stream >> frameLimit;
-        stream >> vSync;
+        stream >> this->windowMode.width >> this->windowMode.height;
+        stream >> this->fullscreen;
+        stream >> this->frameLimit;
+        stream >> this->vSync;
+        stream >> this->antialiasingLevel;
     } else {std::cout << "ERROR: window.ini not found!";}
 
     stream.close();
