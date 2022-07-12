@@ -27,7 +27,6 @@ class MainMenuState : public State
         virtual ~MainMenuState();
 
         //Functions
-        void endState() override;
         void updateInput(const float& dt) override;
         void updateButtons();
         void renderButtons(sf::RenderTarget* target = nullptr);

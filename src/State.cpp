@@ -19,20 +19,9 @@ sf::RenderWindow* State::getWindow() const
     return window; 
 }
 
-void State::checkForQuit()
-{
-    if(sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(this->getKeybinds()["CLOSE"]))) 
-        this->quit = true;
-}
-
 const bool& State::getQuit() const
 {
     return quit;
-}
-
-void State::quitState()
-{
-    quit = true;
 }
 
 std::map<std::string, int>* State::getSupportedKeys() const
@@ -43,6 +32,11 @@ std::map<std::string, int>* State::getSupportedKeys() const
 std::map<std::string, int>& State::getKeybinds()
 {
     return keybinds;
+}
+
+void State::endState()
+{
+    this->quit = true;
 }
 
 void State::updateMousePositions()

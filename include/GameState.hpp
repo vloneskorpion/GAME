@@ -17,7 +17,6 @@ class GameState : public State
         virtual ~GameState();
 
         //Functions
-        void endState() override;
         void updateInput(const float& dt) override;
         void update (const float& dt) override;
         void render (sf::RenderTarget* target = nullptr) override;
