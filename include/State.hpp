@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "Player.hpp"
 
 class State
 {
@@ -11,8 +11,7 @@ class State
 
         bool quit; 
 
-        //Resources
-        std::vector<sf::Texture> textures;
+        
     
     protected:
         sf::Vector2i mousePosScreen;
@@ -20,6 +19,9 @@ class State
         sf::Vector2f mousePosView;
 
         std::stack<State*>& states;
+
+        //Resources
+        std::map<std::string, sf::Texture> textures;
 
     public:
         //Constructors & Destructors

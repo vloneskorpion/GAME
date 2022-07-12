@@ -5,9 +5,11 @@
 class GameState : public State
 {
     private:
-        Entity player;
+        Player* player;
 
         //Functions
+        void initTextures();
+        void initPlayers();
         void initKeybinds() override;
         void loadKeybindsIni(const std::string& filepath);
 
