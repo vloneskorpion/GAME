@@ -21,11 +21,13 @@
 class MovementComponent
 {
     private:
-        float maxVelocity;
         sf::Sprite& sprite;
+        
+        float maxVelocity;
+        float acceleration;
+        float deceleration;
+        
         sf::Vector2f velocity;
-        sf::Vector2f acceleration;
-        sf::Vector2f deceleration;
         
         //Initializer functions
 
@@ -33,7 +35,7 @@ class MovementComponent
 
     public:
         //Constructors & destructors
-        MovementComponent(sf::Sprite& sprite, float maxVelocity);
+        MovementComponent(sf::Sprite& sprite, float maxVelocity, float deceleration, float acceleration);
         virtual ~MovementComponent();
 
         //Accessors

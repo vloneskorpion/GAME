@@ -48,7 +48,7 @@ void Game::loadKeysIni(const std::string& filepath)
     {
         while(stream >> key >> value)
         {
-            this->supportedKeys.insert(std::make_pair(key,value));
+            this->supportedKeys[key] = value;
         }
     } else {std::cout << "ERROR: window.ini not found!";}
 

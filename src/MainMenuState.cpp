@@ -43,17 +43,26 @@ void MainMenuState::loadKeybindsIni(const std::string& filepath)
 
 void MainMenuState::initButtons()
 {
-    this->buttons["GAME_STATE"] = new Button(300, 480, 250, 70,
-                                &this->font, "NEW GAME",
-                                sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+    this->buttons["GAME_STATE"] =   new Button(300, 480, 250, 70,
+                                &this->font, "NEW GAME", 50,
+                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
-    this->buttons["SETTINGS"] =   new Button(300, 580, 250, 70,
-                                &this->font, "SETTINGS",
-                                sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));                                
+    this->buttons["SETTINGS"] =     new Button(300, 580, 250, 70,
+                                &this->font, "SETTINGS", 50,
+                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
-    this->buttons["EXIT"] =      new Button(300, 780, 250, 70,
-                                &this->font, "EXIT",
-                                sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+    this->buttons["EDITOR_STATE"] = new Button(300, 680, 250, 70,
+                                &this->font, "EDITOR", 50,
+                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+
+
+    this->buttons["EXIT"] =         new Button(300, 880, 250, 70,
+                                &this->font, "EXIT", 50,
+                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 }
 
 //Constructors & Destructors
@@ -136,3 +145,5 @@ void MainMenuState::render(sf::RenderTarget* target)
     // mouseTex.setString(ss.str());
     // target->draw(mouseTex);
 } 
+
+//9:08 film 24 
