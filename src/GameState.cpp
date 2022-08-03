@@ -3,7 +3,7 @@
 //Private Functions
 void GameState::initTextures()
 {
-    if(!this->textures["PLAYER_IDLE"].loadFromFile("../resources/images/sprites/player/spider.jpeg"))
+    if(!this->textures["PLAYER_SHEET"].loadFromFile("../resources/images/sprites/player/swinia.jpg"))
     {
         std::cout << "ERROR:GAME_STATE: COULDNT LOAD PLAYER TEXTURE" << '\n';
     }
@@ -11,7 +11,7 @@ void GameState::initTextures()
 
 void GameState::initPlayers()
 {
-    this->player = new Player(0, 0, this->textures["PLAYER_IDLE"]);
+    this->player = new Player(0, 0, this->textures["PLAYER_SHEET"]);
 }
 
 void GameState::initKeybinds()

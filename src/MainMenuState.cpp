@@ -5,7 +5,7 @@ void MainMenuState::initBackground()
 {
     this->background.setSize(sf::Vector2f(this->getWindow()->getSize().x, this->getWindow()->getSize().y));
     
-    if(!this->backgroundTexture.loadFromFile("../resources/images/backgrounds/bg1.png"))
+    if(!this->backgroundTexture.loadFromFile("../resources/images/backgrounds/mine.jpg"))
         std::cout << "ERROR: COULDNT LOAD TEXTURE" << '\n';
 
     this->background.setTexture(&backgroundTexture);
@@ -45,24 +45,24 @@ void MainMenuState::initButtons()
 {
     this->buttons["GAME_STATE"] =   new Button(300, 480, 250, 70,
                                 &this->font, "NEW GAME", 50,
-                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+                                sf::Color(23, 77, 194, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(23, 77, 194, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
     this->buttons["SETTINGS"] =     new Button(300, 580, 250, 70,
                                 &this->font, "SETTINGS", 50,
-                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+                                sf::Color(23, 77, 194, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(23, 77, 194, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
     this->buttons["EDITOR_STATE"] = new Button(300, 680, 250, 70,
                                 &this->font, "EDITOR", 50,
-                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+                                sf::Color(23, 77, 194, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(23, 77, 194, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 
     this->buttons["EXIT"] =         new Button(300, 880, 250, 70,
                                 &this->font, "EXIT", 50,
-                                sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-                                sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+                                sf::Color(23, 77, 194, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+                                sf::Color(23, 77, 194, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 }
 
 //Constructors & Destructors
