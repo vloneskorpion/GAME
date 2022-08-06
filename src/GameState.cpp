@@ -3,7 +3,7 @@
 //Private Functions
 void GameState::initTextures()
 {
-    if(!this->textures["PLAYER_SHEET"].loadFromFile("../resources/images/sprites/player/swinia.jpg"))
+    if(!this->textures["PLAYER_SHEET"].loadFromFile("../resources/images/sprites/player/kotek.png"))
     {
         std::cout << "ERROR:GAME_STATE: COULDNT LOAD PLAYER TEXTURE" << '\n';
     }

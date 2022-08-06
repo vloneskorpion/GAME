@@ -29,14 +29,14 @@ class AnimationComponent
                 sf::IntRect endRect;
 
                 Animation(sf::Sprite& sprite, sf::Texture& textureSheet, float animation_timer
-                    ,int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height)
+                    ,int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height) // frames_x && frames_y how many frames from start rect
 
                     : sprite(sprite) ,textureSheet(textureSheet), animationTimer(animation_timer), width(width), height(height)
                 {
                     this->timer = 0.0f;
                     this->startRect = sf::IntRect(start_frame_x * width, start_frame_y * height, width, height);
                     this->currentRect = this->startRect;
-                    this->endRect = sf::IntRect(frames_x * width, frames_y * height, width, height);
+                    this->endRect = sf::IntRect(this->startRect.left + frames_x * width, this->startRect.top + frames_y * height, width, height);
 
                     this->sprite.setTexture(this->textureSheet, true);
                     this->sprite.setTextureRect(this->startRect);
@@ -47,22 +47,23 @@ class AnimationComponent
                 {
                     //Update timer
                     this->timer += 100.0f * dt;
-                    if(this->timer >= this->animationTimer)
-                    {
-                        //Reset timer
-                        this->timer = 0.0f;
-                        //Animate
-                        if(this->currentRect != this->endRect)
+                    if (this->timer >= this->animationTimer)
                         {
-                            this->currentRect.left += this->width;
-                        }
-                        else // Reset
-                        {
-                            this->currentRect.left = this->startRect.left;
-                        }
+                            //reset timer
+                            this->timer = 0.0f;
 
-                        this->sprite.setTextureRect(this->currentRect);
-                    }
+                            //Animate
+                            if (this->currentRect != this->endRect)
+                            {
+                                this->currentRect.left += this->width;
+                            }
+                            else //Reset
+                            {
+                                this->currentRect.left = this->startRect.left;
+                            }
+
+                            this->sprite.setTextureRect(this->currentRect);
+                        }
                 }
 
                 void reset()
