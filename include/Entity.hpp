@@ -1,5 +1,6 @@
 #pragma once
 
+#include "HitboxComponent.hpp"
 #include "MovementComponent.hpp"
 #include "AnimationComponent.hpp"
 
@@ -12,6 +13,7 @@ class Entity
     protected:
         sf::Sprite sprite;
 
+        HitboxComponent* hitboxComponent;
         MovementComponent* movementComponent;
         AnimationComponent* animationComponent; 
 

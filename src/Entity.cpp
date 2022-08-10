@@ -7,6 +7,7 @@ Entity::Entity()
 
 Entity::~Entity()
 {
+    delete this->hitboxComponent;
     delete this->movementComponent;
     delete this->animationComponent;
 }
