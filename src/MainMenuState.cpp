@@ -97,9 +97,16 @@ void MainMenuState::updateButtons()
         kv.second->update(mousePosView);
     }
 
+    //New game
     if(this->buttons["GAME_STATE"]->isPressed())
     {
         this->states.push(new GameState(this->getWindow(), this->getSupportedKeys(), this->states));
+    }
+
+    //Editor
+    if(this->buttons["EDITOR_STATE"]->isPressed())
+    {
+        this->states.push(new EditorState(this->getWindow(), this->getSupportedKeys(), this->states));
     }
 
     //Quit the game

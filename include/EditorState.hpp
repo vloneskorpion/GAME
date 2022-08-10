@@ -1,13 +1,11 @@
 #pragma once
 
-#include "GameState.hpp"
-#include "EditorState.hpp"
+#include "State.hpp"
 #include "Button.hpp"
 
-class MainMenuState : public State
+class EditorState : public State
 {
     private:
-
         //Variables
         sf::Texture backgroundTexture;
         sf::RectangleShape background;
@@ -24,8 +22,8 @@ class MainMenuState : public State
 
     public:
         //Constructors & Destructors
-        MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>& states);
-        virtual ~MainMenuState();
+        EditorState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>& states);
+        virtual ~EditorState();
 
         //Functions
         void updateInput(const float& dt) override;
